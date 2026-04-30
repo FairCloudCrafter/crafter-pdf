@@ -9,11 +9,37 @@
 <meta property="og:description" content="The first client-side PDF generator built natively for Salesforce dashboards." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://faircloudcrafter.github.io/crafter-pdf/" />
+<meta property="og:image" content="https://faircloudcrafter.github.io/crafter-pdf/assets/og-image.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/styles.css" />
+<link rel="stylesheet" href="assets/extras.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Crafter PDF",
+  "description": "The first client-side PDF generator built natively for Salesforce dashboards. No server. No data egress. No per-document fees.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Salesforce Lightning Platform",
+  "url": "https://faircloudcrafter.github.io/crafter-pdf/",
+  "offers": [
+    {"@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD"},
+    {"@type": "Offer", "name": "Team", "price": "5", "priceCurrency": "USD", "description": "per user per month"},
+    {"@type": "Offer", "name": "Org Flat", "price": "1500", "priceCurrency": "USD", "description": "per organization per month"}
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "FairCloudCrafter",
+    "url": "https://github.com/FairCloudCrafter"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -28,6 +54,7 @@
       <a href="index.html" class="active">Home</a>
       <a href="product.html">Product</a>
       <a href="pricing.html">Pricing</a>
+      <a href="roadmap.html">Roadmap</a>
       <a href="market.html">Why Now</a>
       <a href="about.html">About</a>
       <a class="nav-cta" href="https://github.com/FairCloudCrafter/crafter-pdf">View on GitHub →</a>
@@ -237,6 +264,22 @@
   </div>
 </section>
 
+<!-- ============ EMAIL CAPTURE ============ -->
+<section style="padding: 60px 24px;">
+  <div class="container">
+    <div class="email-capture fade-up">
+      <h3>Get notified when we list on AppExchange.</h3>
+      <p>One email when we go live. No newsletters. No spam. Unsubscribe with one click.</p>
+      <form class="email-form" action="https://formspree.io/f/your-formspree-id" method="POST" onsubmit="this.querySelector('button').textContent='Thanks — we\u2019ll be in touch'; this.querySelector('button').disabled=true;">
+        <input type="email" name="email" placeholder="you@company.com" required />
+        <input type="hidden" name="_subject" value="Crafter PDF launch list signup" />
+        <button type="submit">Notify me →</button>
+      </form>
+      <p class="fineprint">We’ll only email you about the AppExchange launch. That’s it.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="footer-inner">
@@ -251,6 +294,7 @@
       <h5>Product</h5>
       <a href="product.html">How it works</a>
       <a href="pricing.html">Pricing</a>
+      <a href="roadmap.html">Roadmap</a>
       <a href="market.html">Why now</a>
       <a href="https://github.com/FairCloudCrafter/crafter-pdf">GitHub</a>
     </div>

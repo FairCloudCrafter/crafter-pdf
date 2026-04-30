@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Founder support (paying customers)
+    url: mailto:hello@faircloudcrafter.com
+    about: Email the founders directly. Response within 1 business day.
+  - name: 🛣️ View the public roadmap
+    url: https://faircloudcrafter.github.io/crafter-pdf/roadmap.html
+    about: See what's shipping, what's next, and what we're considering.

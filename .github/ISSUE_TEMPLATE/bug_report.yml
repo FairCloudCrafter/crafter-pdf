@@ -1,0 +1,61 @@
+name: 🐛 Bug report
+description: Something is broken or behaving unexpectedly
+title: "[Bug] "
+labels: [bug, triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug! The more detail you give, the faster we can fix it.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of what's broken.
+      placeholder: When I click the PDF button on a Service dashboard, the chart for "Cases by Priority" is missing from the output.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+      placeholder: The chart should render in the PDF the same way it appears in the dashboard.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Navigate to /lightning/r/Dashboard/...
+        2. Click the Crafter PDF button
+        3. Open the downloaded PDF
+        4. Observe missing chart on page 2
+    validations:
+      required: true
+  - type: input
+    id: package-version
+    attributes:
+      label: Crafter PDF version
+      placeholder: 0.2.1
+    validations:
+      required: true
+  - type: input
+    id: org-edition
+    attributes:
+      label: Salesforce org edition
+      placeholder: Enterprise · API 62.0 · Lightning Experience
+    validations:
+      required: true
+  - type: textarea
+    id: console-errors
+    attributes:
+      label: Browser console errors (if any)
+      render: shell
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have searched existing issues and this is not a duplicate
+          required: true
