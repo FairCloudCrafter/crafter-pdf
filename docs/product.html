@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How Crafter PDF Works — Reports API + Chart.js + jsPDF</title>
+<meta name="description" content="Crafter PDF uses the Salesforce Reports API, Chart.js, and jsPDF to render branded PDFs entirely client-side. No external services. No data egress." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><div class="brand-mark">C</div><span>Crafter PDF</span></a>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="product.html" class="active">Product</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="market.html">Why Now</a>
+      <a href="about.html">About</a>
+      <a class="nav-cta" href="https://github.com/FairCloudCrafter/crafter-pdf">View on GitHub →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" style="padding-bottom: 60px;">
+  <div class="container">
+    <span class="eyebrow"><span class="dot"></span> Architecture</span>
+    <h1>One Apex call.<br /><span class="accent">Zero external services.</span></h1>
+    <p class="sub">A pipeline so simple it fits on one diagram. So fast it renders before your coffee finishes brewing.</p>
+  </div>
+</header>
+
+<!-- ============ PIPELINE ============ -->
+<section style="padding-top: 40px;">
+  <div class="container">
+    <div class="pipeline fade-up">
+      <div class="pipeline-steps">
+        <div class="pipeline-step">
+          <div class="num">1</div>
+          <h4>Click the button</h4>
+          <p>Drop the Crafter PDF LWC on any dashboard, report, or record page via Lightning App Builder.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">
+          <div class="num">2</div>
+          <h4>Apex fetches data</h4>
+          <p>One call to Reports.ReportManager.runReport() per dashboard component returns a serialized fact map.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">
+          <div class="num">3</div>
+          <h4>Chart.js redraws</h4>
+          <p>Each visualization is rendered onto an offscreen canvas in the user's browser.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">
+          <div class="num">4</div>
+          <h4>jsPDF assembles</h4>
+          <p>Vector PDF with your logo, brand colors, header, footer, page numbers, and cover page.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">
+          <div class="num">5</div>
+          <h4>Save or send</h4>
+          <p>Download locally, save to Files, push to ContentVersion, email, or fire from a Flow action.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARCHITECTURE EXPLAINED ============ -->
+<section>
+  <div class="container">
+    <div class="section-head fade-up">
+      <div class="section-eyebrow">Why this stack</div>
+      <h2>The intersection nobody else hit.</h2>
+      <p class="lead">Building this required four overlapping skills that almost never live in one team. We have all four.</p>
+    </div>
+    <div class="grid grid-2 fade-up">
+      <div class="feature-card">
+        <div class="icon">⚡</div>
+        <h3>Salesforce LWC + LWS fluency</h3>
+        <p>Lightning Web Security blocks every screenshot-style approach. We build inside Lightning, not around it — using static resources, locker-safe libraries, and the Reports API the way Salesforce intended.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📐</div>
+        <h3>jsPDF mastery</h3>
+        <p>Font embedding, image scaling, page break math, vector tables — these are the unsexy details that make the difference between "ugly PDF export" and "a document your CFO would print and sign."</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h3>Reports API depth</h3>
+        <p>Fact maps, grouping, filter mutation, governor limits. Most senior Apex developers never touch this corner of the platform. We've shipped production code on it.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🧠</div>
+        <h3>Anti-pattern discipline</h3>
+        <p>Every previous attempt at this defaulted to Visualforce renderAs="pdf" (ugly) or external rendering (expensive). We had the discipline to say no to both and build what should exist.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECH DETAIL ============ -->
+<section style="background: linear-gradient(180deg, transparent, rgba(255, 122, 61, 0.04), transparent);">
+  <div class="container">
+    <div class="section-head fade-up">
+      <div class="section-eyebrow">Under the hood</div>
+      <h2>Configured, not coded.</h2>
+      <p class="lead">Admins build templates with Custom Metadata. Developers extend with Apex services. Both ship safely.</p>
+    </div>
+
+    <div class="grid grid-2 fade-up" style="align-items: start;">
+      <div>
+        <h3 style="margin-bottom: 16px;">Custom Metadata template</h3>
+        <p style="color: var(--muted); margin-bottom: 16px; font-size: 14.5px;">Admins drop a logo, pick brand colors, choose sections — no code, no XML.</p>
+        <pre class="code-block"><span class="c-com">// CrafterPdfTemplate__mdt</span>
+<span class="c-key">Label</span>: Q2 Sales Briefing
+<span class="c-key">Brand_Color__c</span>: <span class="c-str">#ff7a3d</span>
+<span class="c-key">Logo_Static_Resource__c</span>: <span class="c-str">acme_logo</span>
+<span class="c-key">Page_Size__c</span>: <span class="c-str">Letter</span>
+<span class="c-key">Cover_Page__c</span>: <span class="c-str">true</span>
+<span class="c-key">Sections__c</span>: [
+  { <span class="c-key">type</span>: <span class="c-str">'dashboard'</span>, <span class="c-key">id</span>: <span class="c-str">'01Z...'</span> },
+  { <span class="c-key">type</span>: <span class="c-str">'report'</span>,    <span class="c-key">id</span>: <span class="c-str">'00O...'</span> }
+]</pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom: 16px;">Flow action</h3>
+        <p style="color: var(--muted); margin-bottom: 16px; font-size: 14.5px;">Generate a PDF from any Flow — record-triggered, scheduled, or screen.</p>
+        <pre class="code-block"><span class="c-com">// In Flow Builder, drop the action:</span>
+<span class="c-key">Action</span>: Generate Crafter PDF
+<span class="c-key">Inputs</span>:
+  <span class="c-key">templateId</span>     <span class="c-str">{!template.Id}</span>
+  <span class="c-key">recordId</span>       <span class="c-str">{!Account.Id}</span>
+  <span class="c-key">deliverVia</span>     <span class="c-str">'Email'</span>
+  <span class="c-key">recipientEmail</span> <span class="c-str">{!owner.Email}</span>
+<span class="c-key">Outputs</span>:
+  <span class="c-key">contentVersionId</span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTEGRATION TARGETS ============ -->
+<section>
+  <div class="container">
+    <div class="section-head fade-up">
+      <div class="section-eyebrow">Where it lives</div>
+      <h2>Drop it anywhere users see Salesforce.</h2>
+    </div>
+    <div class="grid grid-4 fade-up">
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h3>Dashboard pages</h3>
+        <p>One-click PDF of the dashboard the user is viewing.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📄</div>
+        <h3>Report pages</h3>
+        <p>Branded export with your header, footer, and cover page.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📂</div>
+        <h3>Record pages</h3>
+        <p>Account briefings. Opportunity recaps. Case histories.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🌐</div>
+        <h3>Experience Cloud</h3>
+        <p>Customer portals. Partner sites. Same package, same code.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">⚙️</div>
+        <h3>Flow actions</h3>
+        <p>Record-triggered. Scheduled. Screen flows. Anywhere Flow runs.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔁</div>
+        <h3>Apex invocable</h3>
+        <p>Call from triggers, batch jobs, queueables — full programmatic access.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📧</div>
+        <h3>Email templates</h3>
+        <p>Attach generated PDFs to outbound emails via Lightning Email.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📱</div>
+        <h3>Salesforce Mobile</h3>
+        <p>Same LWC, same rendering, on any device.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECURITY ============ -->
+<section style="background: var(--bg-3);">
+  <div class="container">
+    <div class="section-head fade-up">
+      <div class="section-eyebrow">Security</div>
+      <h2>Easy security review.<br />Easy procurement.</h2>
+      <p class="lead">No callouts. No external services. No DPA. No surprises.</p>
+    </div>
+    <div class="grid grid-3 fade-up">
+      <div class="feature-card">
+        <div class="icon">🔐</div>
+        <h3>Zero data egress</h3>
+        <p>Every byte of your data stays inside the Salesforce trust boundary. Auditors love this slide.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📜</div>
+        <h3>No DPA needed</h3>
+        <p>We don't process your data — your users do, in their browser. Cuts months off enterprise procurement.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">✅</div>
+        <h3>AppExchange certified</h3>
+        <p>Targeting AppExchange security review Q3 2026. Pure client-side rendering means minimal review surface.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Ready to see it run?</h2>
+    <p class="lead">Beta installs are open to design partners now.</p>
+    <div class="cta-row" style="margin-bottom: 0;">
+      <a class="btn btn-primary" href="mailto:hello@faircloudcrafter.com?subject=Crafter%20PDF%20beta">Request beta access →</a>
+      <a class="btn btn-secondary" href="pricing.html">See pricing</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand"><div class="brand-mark">C</div><span>Crafter PDF</span></div>
+      <p>Branded PDFs from any Salesforce dashboard. Built by FairCloudCrafter — Salesforce apps, fairly priced.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Product</h5>
+      <a href="product.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="market.html">Why now</a>
+      <a href="https://github.com/FairCloudCrafter/crafter-pdf">GitHub</a>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <a href="about.html">About</a>
+      <a href="mailto:hello@faircloudcrafter.com">Contact</a>
+      <a href="https://github.com/FairCloudCrafter">FairCloudCrafter</a>
+    </div>
+    <div class="footer-col">
+      <h5>Resources</h5>
+      <a href="https://github.com/FairCloudCrafter/crafter-pdf/blob/main/MARKET_ANALYSIS.md">Market analysis</a>
+      <a href="https://github.com/FairCloudCrafter/crafter-pdf/blob/main/README.md">Docs</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 FairCloudCrafter LLC · All rights reserved</span>
+    <span>Salesforce apps, fairly priced. Crafted, not assembled.</span>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
