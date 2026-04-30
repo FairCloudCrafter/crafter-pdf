@@ -1,0 +1,668 @@
+---
+# Jekyll front matter — GitHub Pages picks this up automatically.
+# No layout — this page is fully self-contained HTML.
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Crafter PDF — Branded PDFs from any Salesforce dashboard</title>
+<meta name="description" content="The first client-side PDF generator built natively for Salesforce dashboards. No server. No data egress. No per-document fees. By FairCloudCrafter." />
+<meta property="og:title" content="Crafter PDF — Branded PDFs from any Salesforce dashboard" />
+<meta property="og:description" content="The first client-side PDF generator built natively for Salesforce dashboards. No server. No egress. Fair pricing." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg-2: #111827;
+    --surface: #1a2236;
+    --ink: #f5f7fb;
+    --muted: #9aa6c0;
+    --accent: #ff7a3d;        /* FairCloudCrafter orange */
+    --accent-2: #ffb066;
+    --sf-blue: #00a1e0;
+    --good: #4ade80;
+    --bad: #f87171;
+    --border: rgba(255,255,255,0.08);
+    --max: 1100px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  code, pre { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  /* ================ NAV ================ */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,14,26,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: var(--max); margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -0.02em; }
+  .brand-mark {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: grid; place-items: center;
+    color: #1a0f00; font-weight: 900; font-size: 14px;
+  }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--accent); color: #1a0f00;
+    padding: 8px 16px; border-radius: 8px;
+    font-weight: 600; font-size: 14px;
+  }
+  .nav-cta:hover { background: var(--accent-2); color: #1a0f00; }
+
+  /* ================ HERO ================ */
+  .hero {
+    position: relative;
+    padding: 100px 24px 80px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 800px 400px at 50% -100px, rgba(255,122,61,0.18), transparent 60%),
+      radial-gradient(ellipse 600px 300px at 20% 200px, rgba(0,161,224,0.10), transparent 60%);
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; max-width: var(--max); margin: 0 auto; }
+  .eyebrow {
+    display: inline-block;
+    background: rgba(255,122,61,0.12);
+    border: 1px solid rgba(255,122,61,0.3);
+    color: var(--accent-2);
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+    margin-bottom: 28px;
+  }
+  h1 {
+    font-size: clamp(40px, 6.5vw, 76px);
+    font-weight: 900; letter-spacing: -0.035em; line-height: 1.02;
+    margin-bottom: 24px;
+  }
+  h1 .accent {
+    background: linear-gradient(180deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .sub {
+    font-size: clamp(17px, 2vw, 22px);
+    color: var(--muted);
+    max-width: 720px; margin: 0 auto 40px;
+    font-weight: 400;
+  }
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 24px; border-radius: 10px;
+    font-weight: 600; font-size: 15px;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--accent); color: #1a0f00;
+    box-shadow: 0 10px 30px -10px rgba(255,122,61,0.6);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 35px -10px rgba(255,122,61,0.7); }
+  .btn-secondary {
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { background: var(--surface); border-color: rgba(255,255,255,0.2); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 24px; max-width: 800px; margin: 0 auto;
+    padding-top: 40px; border-top: 1px solid var(--border);
+  }
+  .stat strong {
+    display: block; font-size: clamp(22px, 3vw, 32px);
+    font-weight: 800; color: var(--ink); letter-spacing: -0.02em;
+  }
+  .stat span { color: var(--muted); font-size: 13px; }
+
+  /* ================ SECTION ================ */
+  section { padding: 90px 24px; }
+  .container { max-width: var(--max); margin: 0 auto; }
+  .section-head { text-align: center; margin-bottom: 60px; }
+  .section-eyebrow {
+    color: var(--accent); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px;
+  }
+  h2 {
+    font-size: clamp(32px, 4.5vw, 48px);
+    font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .section-sub { color: var(--muted); font-size: 18px; max-width: 640px; margin: 0 auto; }
+
+  /* ================ PROBLEM SECTION ================ */
+  .problem-bg { background: linear-gradient(180deg, transparent, rgba(248,113,113,0.04), transparent); }
+  .problem-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px; margin-top: 40px;
+  }
+  .problem-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    position: relative;
+  }
+  .problem-card .x {
+    position: absolute; top: 20px; right: 20px;
+    width: 24px; height: 24px; border-radius: 6px;
+    background: rgba(248,113,113,0.15); color: var(--bad);
+    display: grid; place-items: center; font-weight: 700; font-size: 14px;
+  }
+  .problem-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; padding-right: 36px; }
+  .problem-card p { color: var(--muted); font-size: 14px; }
+
+  /* ================ HOW IT WORKS ================ */
+  .pipeline {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px;
+    margin-top: 40px;
+    overflow-x: auto;
+  }
+  .pipeline-steps {
+    display: flex; align-items: stretch; gap: 12px;
+    min-width: 720px;
+  }
+  .pipeline-step {
+    flex: 1;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    position: relative;
+  }
+  .pipeline-step .num {
+    width: 26px; height: 26px; border-radius: 7px;
+    background: var(--accent); color: #1a0f00;
+    display: grid; place-items: center;
+    font-weight: 800; font-size: 13px; margin-bottom: 12px;
+  }
+  .pipeline-step h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .pipeline-step p { color: var(--muted); font-size: 12px; line-height: 1.45; }
+  .pipeline-arrow {
+    align-self: center; color: var(--accent); font-size: 20px; flex: 0 0 auto;
+  }
+
+  /* ================ COMPARISON TABLE ================ */
+  .compare-wrap { overflow-x: auto; margin-top: 40px; border-radius: 14px; border: 1px solid var(--border); }
+  table.compare {
+    width: 100%; border-collapse: collapse; min-width: 700px;
+    background: var(--surface);
+  }
+  table.compare th, table.compare td {
+    padding: 16px 20px; text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  table.compare th {
+    background: var(--bg-2);
+    font-weight: 600; color: var(--muted); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  table.compare th.us { color: var(--accent); }
+  table.compare td.us { background: rgba(255,122,61,0.06); font-weight: 600; }
+  table.compare tr:last-child td { border-bottom: none; }
+  .check { color: var(--good); font-weight: 700; }
+  .cross { color: var(--bad); font-weight: 700; }
+
+  /* ================ PRICING ================ */
+  .pricing-bg { background: linear-gradient(180deg, transparent, rgba(255,122,61,0.04), transparent); }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px; margin-top: 40px;
+  }
+  .price-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex; flex-direction: column;
+  }
+  .price-card.featured {
+    border: 2px solid var(--accent);
+    transform: scale(1.02);
+    box-shadow: 0 20px 50px -20px rgba(255,122,61,0.4);
+    position: relative;
+  }
+  .price-card.featured::before {
+    content: 'MOST POPULAR';
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: #1a0f00;
+    padding: 4px 12px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  }
+  .price-tier { font-size: 14px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .price-amount { font-size: 42px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .price-amount .unit { font-size: 14px; color: var(--muted); font-weight: 500; }
+  .price-tagline { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  .price-features { list-style: none; flex: 1; margin-bottom: 24px; }
+  .price-features li { padding: 8px 0; color: var(--muted); font-size: 14px; display: flex; gap: 8px; }
+  .price-features li::before { content: '✓'; color: var(--good); font-weight: 700; flex: 0 0 auto; }
+  .price-cta {
+    display: block; text-align: center;
+    padding: 12px; border-radius: 10px;
+    background: var(--bg-2); color: var(--ink);
+    text-decoration: none; font-weight: 600; font-size: 14px;
+    border: 1px solid var(--border);
+  }
+  .price-card.featured .price-cta { background: var(--accent); color: #1a0f00; border: none; }
+
+  /* ================ MARKET ================ */
+  .market-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px; margin-top: 40px;
+  }
+  .market-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    text-align: center;
+  }
+  .market-card .big {
+    font-size: 36px; font-weight: 800; letter-spacing: -0.02em;
+    background: linear-gradient(180deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .market-card .label { color: var(--muted); font-size: 13px; }
+
+  /* ================ FOUNDERS ================ */
+  .founders { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .founder-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px;
+  }
+  .founder-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .founder-card .role { color: var(--accent); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .founder-card p { color: var(--muted); font-size: 14px; }
+
+  /* ================ FINAL CTA ================ */
+  .final {
+    text-align: center;
+    padding: 100px 24px;
+    background: linear-gradient(180deg, var(--bg), var(--bg-2));
+  }
+  .final h2 { margin-bottom: 24px; }
+
+  /* ================ FOOTER ================ */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+  }
+  footer a { color: var(--ink); text-decoration: none; }
+
+  @media (max-width: 700px) {
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .founders { grid-template-columns: 1fr; }
+    .nav-links a:not(.nav-cta) { display: none; }
+    .price-card.featured { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-mark">C</div>
+      <span>Crafter PDF</span>
+    </div>
+    <div class="nav-links">
+      <a href="#problem">Why</a>
+      <a href="#how">How it works</a>
+      <a href="#compare">Compare</a>
+      <a href="#pricing">Pricing</a>
+      <a class="nav-cta" href="https://github.com/FairCloudCrafter/crafter-pdf">View on GitHub →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">⚡ The first client-side PDF engine for Salesforce dashboards</span>
+    <h1>
+      Branded PDFs<br/>
+      from any Salesforce<br/>
+      <span class="accent">dashboard. In seconds.</span>
+    </h1>
+    <p class="sub">
+      Salesforce hasn't shipped dashboard PDF export in 12 years. Every workaround sends your data outside the org and charges per document. <strong>Crafter PDF runs entirely in the browser.</strong>
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#pricing">Try the free tier →</a>
+      <a class="btn btn-secondary" href="https://github.com/FairCloudCrafter/crafter-pdf">★ Star on GitHub</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><strong>0</strong><span>External services</span></div>
+      <div class="stat"><strong>0</strong><span>Bytes of data egress</span></div>
+      <div class="stat"><strong>&lt;1s</strong><span>Per page render</span></div>
+      <div class="stat"><strong>1/7th</strong><span>Of Conga's price</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ========== PROBLEM ========== -->
+<section id="problem" class="problem-bg">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">The Problem</div>
+      <h2>Five "solutions." None of them work for dashboards.</h2>
+      <p class="section-sub">This Salesforce idea has been open since 2014. The ecosystem has tried — and failed — to fill the gap five different ways.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="x">✕</div>
+        <h3>Native "Subscribe"</h3>
+        <p>Emails a static PNG. No branding. No multi-dashboard. No on-demand. No PDF.</p>
+      </div>
+      <div class="problem-card">
+        <div class="x">✕</div>
+        <h3>Native "Export"</h3>
+        <p>Exports the underlying data, not the visual. You get a CSV, not a report.</p>
+      </div>
+      <div class="problem-card">
+        <div class="x">✕</div>
+        <h3>html2canvas hacks</h3>
+        <p>Blocked by Lightning Web Security, shadow DOM, and iframe boundaries. Doesn't work.</p>
+      </div>
+      <div class="problem-card">
+        <div class="x">✕</div>
+        <h3>Visualforce renderAs="pdf"</h3>
+        <p>Slow, ugly, no Lightning charts. The 2014 solution to a 2026 problem.</p>
+      </div>
+      <div class="problem-card">
+        <div class="x">✕</div>
+        <h3>Conga / Titan / S-Docs</h3>
+        <p>Built for transactional documents, not dashboards. $35–$80/user/month plus per-doc fees. Data leaves your org.</p>
+      </div>
+      <div class="problem-card" style="border-color: var(--accent); background: rgba(255,122,61,0.06);">
+        <div class="x" style="background: rgba(74,222,128,0.15); color: var(--good);">✓</div>
+        <h3 style="color: var(--accent-2);">Crafter PDF</h3>
+        <p>Native LWC. Reports API → Chart.js → jsPDF. All client-side. Your data never leaves your org.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOW IT WORKS ========== -->
+<section id="how">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">How It Works</div>
+      <h2>One Apex call. Zero external services.</h2>
+      <p class="section-sub">A pipeline so simple it fits on one diagram. So fast it renders before your coffee finishes brewing.</p>
+    </div>
+    <div class="pipeline">
+      <div class="pipeline-steps">
+        <div class="pipeline-step">
+          <div class="num">1</div>
+          <h4>Click the button</h4>
+          <p>Drop the Crafter PDF LWC on any dashboard, report, or record page.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">
+          <div class="num">2</div>
+          <h4>Apex fetches data</h4>
+          <p>One call to Reports.ReportManager.runReport() per dashboard component.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">
+          <div class="num">3</div>
+          <h4>Chart.js redraws</h4>
+          <p>Each visualization rendered onto an offscreen canvas in the browser.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">
+          <div class="num">4</div>
+          <h4>jsPDF assembles</h4>
+          <p>Vector PDF with your logo, colors, header, footer, and cover page.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">
+          <div class="num">5</div>
+          <h4>Save or send</h4>
+          <p>Download, save as ContentVersion, email, or push to Files Connect.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== COMPARISON ========== -->
+<section id="compare" class="problem-bg">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">vs. The Incumbents</div>
+      <h2>Built for dashboards. Priced for humans.</h2>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Conga</th>
+            <th>Titan</th>
+            <th>S-Docs</th>
+            <th class="us">Crafter PDF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Native dashboard support</td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="cross">✕</span></td>
+            <td class="us"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Runs 100% client-side</td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="cross">✕</span></td>
+            <td class="us"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Zero data egress</td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="check">✓</span></td>
+            <td class="us"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Per-document fees</td>
+            <td><span class="cross">✕ Yes</span></td>
+            <td><span class="cross">✕ Yes</span></td>
+            <td><span class="cross">✕ Yes</span></td>
+            <td class="us"><span class="check">✓ None</span></td>
+          </tr>
+          <tr>
+            <td>Multi-dashboard briefing book</td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="cross">✕</span></td>
+            <td class="us"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Modern Chart.js charts</td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="cross">✕</span></td>
+            <td class="us"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Starting price (per user / mo)</td>
+            <td>$35</td>
+            <td>$24</td>
+            <td>$20</td>
+            <td class="us">$5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MARKET ========== -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">The Opportunity</div>
+      <h2>A real, deep, unsolved gap.</h2>
+      <p class="section-sub">Salesforce has 150,000 customer orgs. Every one of them has someone who manually screenshots dashboards into decks every quarter.</p>
+    </div>
+    <div class="market-grid">
+      <div class="market-card">
+        <div class="big">12 yrs</div>
+        <div class="label">Top Salesforce Idea has been open without a native solution</div>
+      </div>
+      <div class="market-card">
+        <div class="big">15,000</div>
+        <div class="label">Target orgs with at least one dashboard-export use case</div>
+      </div>
+      <div class="market-card">
+        <div class="big">$27M</div>
+        <div class="label">ARR addressable at our $1,500/org Flat tier alone</div>
+      </div>
+      <div class="market-card">
+        <div class="big">0</div>
+        <div class="label">Direct, dashboard-native, client-side competitors on AppExchange today</div>
+      </div>
+    </div>
+    <p style="text-align: center; margin-top: 40px; color: var(--muted); font-size: 14px;">
+      Read the full <a href="https://github.com/FairCloudCrafter/crafter-pdf/blob/main/MARKET_ANALYSIS.md" style="color: var(--accent);">market analysis →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ========== PRICING ========== -->
+<section id="pricing" class="pricing-bg">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Pricing</div>
+      <h2>Fair pricing. No tricks. No per-doc fees.</h2>
+      <p class="section-sub">If you can use Conga, you're already paying 7× more than you need to.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <div class="price-tier">Free</div>
+        <div class="price-amount">$0<span class="unit"> / forever</span></div>
+        <div class="price-tagline">Single dashboard. No scheduling. Powered-by footer.</div>
+        <ul class="price-features">
+          <li>1 dashboard PDF per page</li>
+          <li>Default branding</li>
+          <li>Manual export only</li>
+          <li>Community support</li>
+        </ul>
+        <a class="price-cta" href="https://github.com/FairCloudCrafter/crafter-pdf">Install from GitHub</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-tier">Team</div>
+        <div class="price-amount">$5<span class="unit"> / user / mo</span></div>
+        <div class="price-tagline">Unlimited dashboards. Full branding. Scheduled delivery.</div>
+        <ul class="price-features">
+          <li>Unlimited dashboards & reports</li>
+          <li>Full branding kit (logo, colors, fonts, cover)</li>
+          <li>Scheduled email & ContentVersion delivery</li>
+          <li>Flow action</li>
+          <li>Email support</li>
+        </ul>
+        <a class="price-cta" href="mailto:hello@faircloudcrafter.com?subject=Crafter%20PDF%20Team%20tier">Start free trial →</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-tier">Org Flat</div>
+        <div class="price-amount">$1,500<span class="unit"> / mo</span></div>
+        <div class="price-tagline">Unlimited users. Unlimited everything.</div>
+        <ul class="price-features">
+          <li>Everything in Team</li>
+          <li>Unlimited users</li>
+          <li>Multi-dashboard briefing books</li>
+          <li>Experience Cloud support</li>
+          <li>Priority support & SLAs</li>
+        </ul>
+        <a class="price-cta" href="mailto:hello@faircloudcrafter.com?subject=Crafter%20PDF%20Org%20Flat">Talk to founders →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOUNDERS ========== -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Built by</div>
+      <h2>Two senior Salesforce engineers. <br/>No middlemen, no markup.</h2>
+    </div>
+    <div class="founders">
+      <div class="founder-card">
+        <h3>Scott Fenech</h3>
+        <div class="role">Co-founder · Salesforce Architect</div>
+        <p>Designs and ships the LWC + Apex foundations enterprise teams trust in production. Years of Salesforce delivery at retail scale.</p>
+      </div>
+      <div class="founder-card">
+        <h3>Victor Felisbino</h3>
+        <div class="role">Co-founder · Salesforce Architect</div>
+        <p>Built the original client-side PDF engine in production at a Fortune-500 retailer. Specializes in the LWC ↔ static-resource ↔ Apex seam other devs avoid.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="final">
+  <div class="container">
+    <h2>Stop screenshotting dashboards.</h2>
+    <p class="section-sub" style="margin-bottom: 36px;">Ship branded PDFs in one click. Your CFO will think you spent a quarter building it.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/FairCloudCrafter/crafter-pdf">View on GitHub →</a>
+      <a class="btn btn-secondary" href="mailto:hello@faircloudcrafter.com">hello@faircloudcrafter.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 <a href="https://github.com/FairCloudCrafter">FairCloudCrafter LLC</a> · Crafter PDF · Salesforce apps, fairly priced. Crafted, not assembled.
+</footer>
+
+</body>
+</html>

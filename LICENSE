@@ -1,0 +1,17 @@
+Copyright (c) 2026 FairCloudCrafter LLC. All rights reserved.
+
+Crafter PDF is commercial software. The contents of this repository are made
+available for transparency, evaluation, and contribution under the following
+terms:
+
+1. You may read, fork, and submit pull requests against this repository.
+2. You may install and run the managed package distributed via the Salesforce
+   AppExchange under the terms of the FairCloudCrafter Subscription Agreement.
+3. You may NOT redistribute, sublicense, or offer this software (in source or
+   binary form) as a hosted service, managed package, or commercial product
+   without prior written permission from FairCloudCrafter LLC.
+
+The "Free" tier of Crafter PDF is provided at no charge subject to the
+attribution requirements described in the README.
+
+For licensing inquiries: hello@faircloudcrafter.com
