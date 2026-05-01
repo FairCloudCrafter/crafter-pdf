@@ -3,6 +3,22 @@
     <description>Grants access to Crafter PDF Apex classes and the CrafterPdfTemplate__mdt type. Assign to any user who needs to generate PDFs.</description>
     <label>Crafter PDF User</label>
     <classAccesses>
+        <apexClass>CrafterPdfDeliveryJob</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CrafterPdfEmailService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CrafterPdfInvocable</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CrafterPdfScheduler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CrafterPdfService</apexClass>
         <enabled>true</enabled>
     </classAccesses>

@@ -1,0 +1,57 @@
+<template>
+    <!-- Crafter PDF Briefing Book
+         Composes multiple reports into a single PDF document.
+         Configure report IDs (comma-separated) and template in App Builder.
+    -->
+    <div class="crafter-briefing-wrapper">
+
+        <!-- Error banner -->
+        <template lwc:if={hasError}>
+            <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                <span class="slds-assistive-text">error</span>
+                <lightning-icon
+                    icon-name="utility:error"
+                    alternative-text="Error"
+                    class="slds-m-right_x-small"
+                    size="small">
+                </lightning-icon>
+                <p>{errorMessage}</p>
+            </div>
+        </template>
+
+        <!-- Report list preview -->
+        <template lwc:if={reportList}>
+            <ul class="slds-list_dotted slds-m-bottom_small crafter-report-list">
+                <template for:each={reportList} for:item="r">
+                    <li key={r}
+                        class="slds-text-body_small slds-text-color_weak">
+                        {r}
+                    </li>
+                </template>
+            </ul>
+        </template>
+
+        <!-- Export button -->
+        <lightning-button
+            label={buttonLabel}
+            icon-name={buttonIcon}
+            icon-position="left"
+            variant="brand"
+            disabled={buttonDisabled}
+            onclick={handleExport}
+            class="crafter-briefing-btn">
+        </lightning-button>
+
+        <!-- Loading overlay -->
+        <template lwc:if={isLoading}>
+            <div class="crafter-spinner-overlay">
+                <lightning-spinner
+                    alternative-text="Building briefing book…"
+                    size="medium">
+                </lightning-spinner>
+                <p class="slds-m-top_small slds-text-body_small">{loadingMessage}</p>
+            </div>
+        </template>
+
+    </div>
+</template>
