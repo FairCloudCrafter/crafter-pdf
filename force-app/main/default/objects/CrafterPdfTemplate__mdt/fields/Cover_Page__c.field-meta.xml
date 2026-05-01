@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cover_Page__c</fullName>
+    <description>When true, Crafter PDF prepends a branded cover page to the generated document.</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Cover Page</label>
+    <required>false</required>
+    <type>Checkbox</type>
+    <defaultValue>false</defaultValue>
+</CustomField>

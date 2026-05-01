@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate Salesforce Package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Salesforce CLI
+        run: npm install -g @salesforce/cli@latest
+
+      - name: Auth to Dev Hub
+        run: |
+          echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
+          sf org login sfdx-url --sfdx-url-file ./authfile --alias devhub --set-default-dev-hub
+        env:
+          DEVHUB_SFDX_AUTH_URL: ${{ secrets.DEVHUB_SFDX_AUTH_URL }}
+
+      - name: Create Scratch Org
+        run: |
+          sf org create scratch \
+            --definition-file config/project-scratch-def.json \
+            --alias ci-scratch \
+            --duration-days 1 \
+            --wait 10
+
+      - name: Deploy Source
+        run: sf project deploy start --target-org ci-scratch
+
+      - name: Run Apex Tests
+        run: |
+          sf apex run test \
+            --target-org ci-scratch \
+            --code-coverage \
+            --result-format human \
+            --wait 10
+
+      - name: Delete Scratch Org
+        if: always()
+        run: sf org delete scratch --target-org ci-scratch --no-prompt
+
+  lint-site:
+    name: Check Site Placeholders
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fail on placeholder Formspree ID
+        run: |
+          if grep -r "your-formspree-id" docs/; then
+            echo "ERROR: Placeholder Formspree ID found in docs/. Replace before merging."
+            exit 1
+          fi
+
+      - name: Fail on TODO anchors in HTML
+        run: |
+          count=$(grep -rc "TODO:" docs/*.html | awk -F: '{sum+=$2} END {print sum}')
+          echo "Open TODO items in HTML: $count"

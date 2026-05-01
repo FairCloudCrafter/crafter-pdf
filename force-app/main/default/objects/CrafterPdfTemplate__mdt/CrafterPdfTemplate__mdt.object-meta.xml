@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Defines a branded PDF template for Crafter PDF. Each record controls layout, branding, and content sections for a generated PDF.</description>
+    <label>Crafter PDF Template</label>
+    <pluralLabel>Crafter PDF Templates</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

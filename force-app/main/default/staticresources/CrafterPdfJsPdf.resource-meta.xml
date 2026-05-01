@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Private</cacheControl>
+    <contentType>application/zip</contentType>
+    <description>jsPDF UMD bundle and jspdf-autotable plugin. Wave 2: replace placeholder with production bundle.</description>
+</StaticResource>

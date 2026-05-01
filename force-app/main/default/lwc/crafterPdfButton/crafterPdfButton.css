@@ -1,0 +1,16 @@
+.crafter-pdf-button-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.crafter-pdf-spinner-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.75);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    z-index: 10;
+}

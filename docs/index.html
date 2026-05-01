@@ -270,7 +270,8 @@
     <div class="email-capture fade-up">
       <h3>Get notified when we list on AppExchange.</h3>
       <p>One email when we go live. No newsletters. No spam. Unsubscribe with one click.</p>
-      <form class="email-form" action="https://formspree.io/f/your-formspree-id" method="POST" onsubmit="this.querySelector('button').textContent='Thanks — we\u2019ll be in touch'; this.querySelector('button').disabled=true;">
+      <!-- TODO: replace action with your real Formspree endpoint before going live -->
+      <form class="email-form" action="https://formspree.io/f/hello@faircloudcrafter.com" method="POST" onsubmit="this.querySelector('button').textContent='Thanks — we\u2019ll be in touch'; this.querySelector('button').disabled=true;">
         <input type="email" name="email" placeholder="you@company.com" required />
         <input type="hidden" name="_subject" value="Crafter PDF launch list signup" />
         <button type="submit">Notify me →</button>

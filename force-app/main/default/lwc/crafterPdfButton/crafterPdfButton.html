@@ -1,0 +1,45 @@
+<template>
+    <!-- Crafter PDF Button
+         Drop onto any Lightning page via App Builder.
+         Configure reportId and templateDeveloperName in the component properties panel.
+    -->
+    <div class="crafter-pdf-button-wrapper">
+
+        <!-- Error banner -->
+        <template lwc:if={hasError}>
+            <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                <span class="slds-assistive-text">error</span>
+                <lightning-icon
+                    icon-name="utility:error"
+                    alternative-text="Error"
+                    class="slds-m-right_x-small"
+                    size="small">
+                </lightning-icon>
+                <p>{errorMessage}</p>
+            </div>
+        </template>
+
+        <!-- Export button -->
+        <lightning-button
+            label={buttonLabel}
+            icon-name={buttonIcon}
+            icon-position="left"
+            variant="brand"
+            disabled={buttonDisabled}
+            onclick={handleExport}
+            class="crafter-pdf-btn">
+        </lightning-button>
+
+        <!-- Loading spinner overlay -->
+        <template lwc:if={isLoading}>
+            <div class="crafter-pdf-spinner-overlay">
+                <lightning-spinner
+                    alternative-text="Generating PDF…"
+                    size="medium">
+                </lightning-spinner>
+                <p class="slds-m-top_small slds-text-body_small">Generating PDF…</p>
+            </div>
+        </template>
+
+    </div>
+</template>

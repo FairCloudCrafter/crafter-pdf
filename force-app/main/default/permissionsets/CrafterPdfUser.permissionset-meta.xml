@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Grants access to Crafter PDF Apex classes and the CrafterPdfTemplate__mdt type. Assign to any user who needs to generate PDFs.</description>
+    <label>Crafter PDF User</label>
+    <classAccesses>
+        <apexClass>CrafterPdfService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <customMetadataTypeAccesses>
+        <name>CrafterPdfTemplate__mdt</name>
+        <enabled>true</enabled>
+    </customMetadataTypeAccesses>
+    <hasActivationRequired>false</hasActivationRequired>
+</PermissionSet>
