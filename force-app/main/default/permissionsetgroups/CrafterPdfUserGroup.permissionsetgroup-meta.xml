@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Permission Set Group for Crafter PDF end users. Bundles CrafterPdfUser for one-click assignment.</description>
+    <label>Crafter PDF User Group</label>
+    <permissionSets>CrafterPdfUser</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

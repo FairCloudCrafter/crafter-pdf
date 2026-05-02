@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Grants access to Crafter PDF Apex classes and the CrafterPdfTemplate__mdt type. Assign to any user who needs to generate PDFs.</description>
-    <label>Crafter PDF User</label>
+    <description>Grants Crafter PDF admins read + write access to CrafterPdfTemplate__mdt records so they can configure branding without code. Assign alongside CrafterPdfUser.</description>
+    <label>Crafter PDF Admin</label>
     <classAccesses>
         <apexClass>CrafterPdfDeliveryJob</apexClass>
         <enabled>true</enabled>
@@ -26,43 +26,42 @@
         <name>CrafterPdfTemplate__mdt</name>
         <enabled>true</enabled>
     </customMetadataTypeAccesses>
-    <!-- Field-level read access on all CrafterPdfTemplate__mdt fields -->
+    <!-- Full FLS on all CrafterPdfTemplate__mdt fields for admins -->
     <fieldPermissions>
         <field>CrafterPdfTemplate__mdt.Brand_Color__c</field>
         <readable>true</readable>
-        <editable>false</editable>
+        <editable>true</editable>
     </fieldPermissions>
     <fieldPermissions>
         <field>CrafterPdfTemplate__mdt.Cover_Page__c</field>
         <readable>true</readable>
-        <editable>false</editable>
+        <editable>true</editable>
     </fieldPermissions>
     <fieldPermissions>
         <field>CrafterPdfTemplate__mdt.Footer_Text__c</field>
         <readable>true</readable>
-        <editable>false</editable>
+        <editable>true</editable>
     </fieldPermissions>
     <fieldPermissions>
         <field>CrafterPdfTemplate__mdt.Header_Text__c</field>
         <readable>true</readable>
-        <editable>false</editable>
+        <editable>true</editable>
     </fieldPermissions>
     <fieldPermissions>
         <field>CrafterPdfTemplate__mdt.Logo_Static_Resource__c</field>
         <readable>true</readable>
-        <editable>false</editable>
+        <editable>true</editable>
     </fieldPermissions>
     <fieldPermissions>
         <field>CrafterPdfTemplate__mdt.Page_Size__c</field>
         <readable>true</readable>
-        <editable>false</editable>
+        <editable>true</editable>
     </fieldPermissions>
-    <!-- ContentVersion: users need create + read to generate and retrieve PDFs -->
     <objectPermissions>
         <object>ContentVersion</object>
         <allowCreate>true</allowCreate>
         <allowRead>true</allowRead>
-        <allowEdit>false</allowEdit>
+        <allowEdit>true</allowEdit>
         <allowDelete>false</allowDelete>
         <viewAllRecords>false</viewAllRecords>
         <modifyAllRecords>false</modifyAllRecords>

@@ -86,6 +86,7 @@ public with sharing class CrafterPdfService {
                     Footer_Text__c
             FROM    CrafterPdfTemplate__mdt
             WHERE   DeveloperName = :templateDeveloperName
+            WITH USER_MODE
             LIMIT   1
         ];
 
@@ -171,6 +172,17 @@ public with sharing class CrafterPdfService {
     public static SaveResult savePdf(String base64Pdf, String fileName, String linkedRecordId) {
         SaveResult result = new SaveResult();
         try {
+            // CRUD check — AppExchange security requirement
+            if (!Schema.sObjectType.ContentVersion.isCreateable()) {
+                throw new AuraHandledException('Insufficient permissions to create files.');
+            }
+
+            // Validate linkedRecordId is a well-formed Salesforce ID before use as a DML field
+            if (String.isNotBlank(linkedRecordId) &&
+                !Pattern.matches('[a-zA-Z0-9]{15}|[a-zA-Z0-9]{18}', linkedRecordId)) {
+                throw new AuraHandledException('Invalid linkedRecordId format.');
+            }
+
             ContentVersion cv       = new ContentVersion();
             cv.Title                = String.isNotBlank(fileName) ? fileName : 'Crafter PDF Export';
             cv.PathOnClient         = cv.Title + '.pdf';
@@ -179,13 +191,22 @@ public with sharing class CrafterPdfService {
             if (String.isNotBlank(linkedRecordId)) {
                 cv.FirstPublishLocationId = linkedRecordId;
             }
-            insert cv;
+            // USER_MODE enforces sharing rules, CRUD, and FLS on DML
+            Database.insert(cv, AccessLevel.USER_MODE);
 
             // Fetch the ContentDocumentId for callers that need it
-            ContentVersion inserted = [SELECT ContentDocumentId FROM ContentVersion WHERE Id = :cv.Id LIMIT 1];
+            ContentVersion inserted = [
+                SELECT ContentDocumentId
+                FROM   ContentVersion
+                WHERE  Id = :cv.Id
+                WITH USER_MODE
+                LIMIT  1
+            ];
             result.contentVersionId   = cv.Id;
             result.contentDocumentId  = inserted.ContentDocumentId;
             result.success            = true;
+        } catch (AuraHandledException e) {
+            throw e; // re-throw user-facing errors as-is
         } catch (Exception e) {
             result.success      = false;
             result.errorMessage = e.getMessage();

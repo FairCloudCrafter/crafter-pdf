@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Permission Set Group for Crafter PDF admins. Bundles CrafterPdfUser + CrafterPdfAdmin for template configuration access.</description>
+    <label>Crafter PDF Admin Group</label>
+    <permissionSets>CrafterPdfUser</permissionSets>
+    <permissionSets>CrafterPdfAdmin</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

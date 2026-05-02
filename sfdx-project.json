@@ -4,13 +4,20 @@
             "path": "force-app",
             "default": true,
             "package": "Crafter PDF",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT"
+            "versionName": "Spring '26 — v0.1 Beta",
+            "versionNumber": "0.1.0.NEXT",
+            "versionDescription": "Initial managed package release. Client-side PDF rendering from Salesforce Reports via Chart.js + jsPDF. Includes LWC components (crafterPdfButton, crafterPdfBriefingBook), Flow invocable action, scheduled delivery, CrafterPdfTemplate__mdt branding system, and Permission Set Groups.",
+            "releaseNotesUrl": "https://faircloudcrafter.com/docs/roadmap",
+            "unpackagedMetadata": {
+                "path": "unpackaged"
+            }
         }
     ],
     "name": "crafter-pdf",
     "namespace": "fcrft",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "62.0",
-    "packageAliases": {}
+    "packageAliases": {
+        "Crafter PDF": "0Ho000000000000AAA"
+    }
 }

@@ -29,11 +29,12 @@ public with sharing class CrafterPdfEmailService {
     ) {
         if (String.isBlank(recipientsCsv) || String.isBlank(contentVersionId)) return;
 
-        // Fetch the blob
+        // Fetch the blob — WITH USER_MODE enforces sharing and FLS
         ContentVersion cv = [
             SELECT VersionData, Title
             FROM   ContentVersion
             WHERE  Id = :contentVersionId
+            WITH USER_MODE
             LIMIT  1
         ];
 
